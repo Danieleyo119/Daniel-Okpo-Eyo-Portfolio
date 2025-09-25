@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Okpo Eyo - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .name {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #f39c12;
+            transform: translateY(-2px);
+        }
+
+        .nav {
+            background: #34495e;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav li {
+            margin: 0;
+        }
+
+        .nav a {
+            display: block;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav a:hover {
+            background: #3498db;
+            border-bottom-color: #f39c12;
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #f39c12;
+        }
+
+        .section h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin: 20px 0 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(116, 185, 255, 0.3);
+            transform: perspective(1000px) rotateX(2deg);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(116, 185, 255, 0.4);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .skill-card {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            border-color: #3498db;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2);
+        }
+
+        .achievement {
+            background: #f8f9fa;
+            border-left: 5px solid #28a745;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 0 15px 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .achievement:hover {
+            background: #e8f5e8;
+            transform: translateX(10px);
+        }
+
+        .achievement h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .experience-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .experience-item h3 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .company {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .experience-item ul {
+            margin-left: 20px;
+        }
+
+        .experience-item li {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.5);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #f39c12;
+            display: block;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .education-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #17a2b8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav ul {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(52, 152, 219, 0.2);
+            z-index: 1000;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #f39c12);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media print {
+            .nav, .scroll-indicator, .cta-section { display: none; }
+            .container { box-shadow: none; margin: 0; }
+            .header { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="profile-image">DE</div>
+                <h1 class="name">Daniel Okpo Eyo</h1>
+                <p class="title">International Relations Professional | Administrative Expert | Project Coordinator</p>
+                <div class="contact-info">
+                    <a href="mailto:danieleyo119@gmail.com" class="contact-item">
+                        📧 danieleyo119@gmail.com
+                    </a>
+                    <a href="tel:+2349078801589" class="contact-item">
+                        📱 +234 907 880 1589
+                    </a>
+                    <a href="https://linkedin.com/in/daniel-eyo" class="contact-item" target="_blank">
+                        💼 LinkedIn: daniel-eyo
+                    </a>
+                    <div class="contact-item">
+                        📍 Calabar, Cross River State
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">3+</span>
+                        Years Experience
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        Entrepreneurs Trained
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        Diplomatic Events
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">90%</span>
+                        Task Completion Rate
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section id="summary" class="section">
+                <h2>Professional Summary</h2>
+                <div class="highlight-box">
+                    <p><strong>Results-driven International Relations professional</strong> with over three years of experience in administration, project assistance, and stakeholder engagement. Proven track record of delivering high-level administrative support, coordinating projects, and supporting diplomatic and development initiatives across government, non-profit, and development organizations.</p>
+                    <br>
+                    <p><strong>Core Expertise:</strong> Administrative excellence + cultural intelligence + diplomatic coordination = strategic advantage for international development and security initiatives.</p>
+                </div>
+            </section>
+
+            <section id="experience" class="section">
+                <h2>Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <h3>Project Coordinator – Entrepreneurship Development</h3>
+                    <p class="company">Efik Connect Foundation | 2025</p>
+                    <ul>
+                        <li>Designed and delivered training programs reaching 50+ participants with 80% satisfaction rate</li>
+                        <li>Established partnerships with trainers, mentors, and funding sources</li>
+                        <li>Created business database linking 5–10 viable businesses to funding opportunities</li>
+                        <li>Built network of 30+ active members within 6 months</li>
+                        <li>Managed complex stakeholder relationships with discretion and diplomacy</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Administrative Assistant (NYSC)</h3>
+                    <p class="company">Presidential Amnesty Programme (PAP) | Abuja | 2023–2024</p>
+                    <ul>
+                        <li>Provided administrative support to senior staff with 90% completion rate of high-priority tasks</li>
+                        <li>Coordinated 10+ high-level diplomatic events involving foreign dignitaries</li>
+                        <li>Managed confidential documents with 100% compliance to organizational standards</li>
+                        <li>Supported stakeholder management and international cooperation initiatives</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Administrative Assistant (Internship)</h3>
+                    <p class="company">Institute for Peace and Conflict Resolution (IPCR) | Abuja | 2022</p>
+                    <ul>
+                        <li>Prepared tailored reports that improved project proposal acceptance rates by 15%</li>
+                        <li>Managed documentation for 5+ publications, ensuring accuracy and timely release</li>
+                        <li>Supported conferences and workshops, improving meeting efficiency by 25%</li>
+                        <li>Produced policy-oriented reports supporting peace and security interventions</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Administrative Intern</h3>
+                    <p class="company">Directorate for Technical Aid Corps (DTAC) | Abuja | 2021</p>
+                    <ul>
+                        <li>Drafted reports on aid initiatives, directly informing policy discussions</li>
+                        <li>Assisted in meetings with diplomats and international organizations</li>
+                        <li>Supported daily administrative operations, ensuring smooth workflows</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Administrative Intern</h3>
+                    <p class="company">National Council for Arts and Culture (NCAC) | Abuja | 2020</p>
+                    <ul>
+                        <li>Contributed to cultural heritage preservation projects</li>
+                        <li>Assisted in outreach initiatives that engaged local communities</li>
+                        <li>Supported documentation and logistics for national cultural events</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="achievements" class="section">
+                <h2>Key Achievements</h2>
+                
+                <div class="achievement">
+                    <h4>🎯 Diplomatic Excellence</h4>
+                    <p><strong>Challenge:</strong> Coordinate complex diplomatic events with international stakeholders</p>
+                    <p><strong>Result:</strong> Successfully assisted in 10+ high-level diplomatic events, supporting international cooperation and networking</p>
+                </div>
+
+                <div class="achievement">
+                    <h4>🚀 Entrepreneurship Impact</h4>
+                    <p><strong>Challenge:</strong> Develop sustainable support network for local entrepreneurs</p>
+                    <p><strong>Result:</strong> Trained 50+ entrepreneurs with 80% satisfaction rate, matched 5+ SMEs to funding opportunities</p>
+                </div>
+
+                <div class="achievement">
+                    <h4>📊 Policy & Research Excellence</h4>
+                    <p><strong>Challenge:</strong> Improve organizational proposal success rates</p>
+                    <p><strong>Result:</strong> Enhanced proposal acceptance rates by 15% through targeted reporting and documentation</p>
+                </div>
+
+                <div class="achievement">
+                    <h4>🔒 Administrative Security</h4>
+                    <p><strong>Challenge:</strong> Maintain confidentiality in sensitive government operations</p>
+                    <p><strong>Result:</strong> Zero breaches of confidentiality while managing classified documents and diplomatic communications</p>
+                </div>
+            </section>
+
+            <section id="skills" class="section">
+                <h2>Core Competencies</h2>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>🎯 Administration & Coordination</h3>
+                        <p>Project management, stakeholder engagement, virtual assistance, scheduling, data entry, reporting excellence</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <h3>🔍 Research & Analysis</h3>
+                        <p>Data analysis, documentation, report generation, policy research, strategic assessment</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <h3>🌍 Cultural Intelligence</h3>
+                        <p>Multilingual capabilities (English, Efik, local dialects), cross-cultural communication, diplomatic protocols</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <h3>💻 Technical Proficiency</h3>
+                        <p>Microsoft Office Suite, Google Workspace, Digital Marketing, AI Tools (ChatGPT, Miro, Gemini)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education" class="section">
+                <h2>Education & Professional Development</h2>
+                
+                <div class="education-item">
+                    <h3>🎓 Bachelor of Arts, International Relations</h3>
+                    <p><strong>Elizade University, Ondo State</strong> | Second Class Upper | 2019–2023</p>
+                </div>
+
+                <div class="education-item">
+                    <h3>📚 Project Management Fundamentals & Beyond</h3>
+                    <p><strong>DEXA [Digital Exchange Academy]</strong> | 2024</p>
+                </div>
+
+                <div class="education-item">
+                    <h3>🏆 West African Senior School Certificate</h3>
+                    <p><strong>Community Secondary School, Asokoro</strong> | 2019</p>
+                </div>
+            </section>
+
+            <div class="cta-section">
+                <h2>Ready to Drive Results</h2>
+                <p>Available for strategic roles in international relations, security services, energy sector development, or administrative leadership positions requiring diplomatic expertise and project coordination excellence.</p>
+                <a href="mailto:danieleyo119@gmail.com" class="cta-button">Send Email</a>
+                <a href="tel:+2349078801589" class="cta-button">Call Now</a>
+                <a href="https://linkedin.com/in/daniel-eyo" class="cta-button" target="_blank">Connect on LinkedIn</a>
+            </div>
+
+            <section id="contact" class="section">
+                <h2>Professional Contact</h2>
+                <div class="experience-item">
+                    <h3>📍 Contact Information</h3>
+                    <p><strong>Location:</strong> Calabar, Cross River State, Nigeria</p>
+                    <p><strong>Availability:</strong> Immediate</p>
+                    <p><strong>Mobility:</strong> Nigeria-wide & International</p>
+                    <p><strong>Security Clearance:</strong> Ready for processing</p>
+                    <br>
+                    <p><strong>📧 Email:</strong> <a href="mailto:danieleyo19@gmail.com">danieleyo19@gmail.com</a></p>
+                    <p><strong>📱 Phone:</strong> <a href="tel:+2349078801589">+234 907 880 1589</a></p>
+                    <p><strong>💼 LinkedIn:</strong> <a href="https://linkedin.com/in/daniel-eyo" target="_blank">daniel-eyo</a></p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Daniel Okpo Eyo. Professional Portfolio | International Relations Expert</p>
+            <p>Specialized in Administration, Project Coordination & Diplomatic Affairs</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        });
+
+        // Add animation delay to sections
+        const sections = document.querySelectorAll('.section');
+        sections.forEach((section, index) => {
+            section.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
